@@ -1,0 +1,9 @@
+Library/*
+Temp/*
+obj/*
+UserSettings/*
+Temp/*
+Logs/*
+*.sln
+*.csproj
+*.userprefs
