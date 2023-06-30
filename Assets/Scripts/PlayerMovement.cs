@@ -27,28 +27,24 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpPressed;
     private int jumpCount;
 
-    private bool jumped;
+    private bool jumped = false;
+    private float jumpTicks;
 
-
+    private Boolean wasInAir;
 
 
     void Jump()
     {
-        Debug.Log(jumped);
-        
-        if (myRigidbody2D.velocity.y == 0 && jumped)
-        {
-            fallAudioSource1.Play();
-            jumped = false;
-        }
-        
+
+
         if (isGround)
         {
             jumpCount = 1;
-
             isJump = false;
             
         }
+
+       
 
         if (jumpPressed && isGround)
         {
@@ -58,15 +54,12 @@ public class PlayerMovement : MonoBehaviour
             jumpAudioSource1.Play();
             jumpCount--;
             jumpPressed = false;
-            
-            jumped = true;
+
         }else if (jumpPressed&& jumpCount>0&& isJump)
         {
             myRigidbody2D.velocity += new Vector2(0f,jumpSpeed);
             jumpCount--;
             jumpPressed = false;
-            
-            jumped = true;
         }
         
     }
@@ -75,12 +68,33 @@ public class PlayerMovement : MonoBehaviour
     {
         isGround = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
         // isGround = Physics2D.OverlapCircle(groundC)
-       
+
+        if (wasInAir && isGround)
+        {
+            fallAudioSource1.Play();
+        }
+
 
         Jump();
         SwitchAnimation();
+
+        wasInAir = !isGround;
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        Run();
+        FlipSprite();
+
+        if (Input.GetButtonDown("Jump") && jumpCount>0)
+        {
+            jumpPressed = true;
+        }
+        
+        
+    }
+    
 
     void OnMove(InputValue value)
     {
@@ -97,17 +111,7 @@ public class PlayerMovement : MonoBehaviour
         myFeetCollider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Run();
-        FlipSprite();
-
-        if (Input.GetButtonDown("Jump") && jumpCount>0)
-        {
-            jumpPressed = true;
-        }
-    }
+    
 
     
     void Run()
