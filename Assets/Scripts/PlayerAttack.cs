@@ -12,11 +12,13 @@ public class PlayerAttack : MonoBehaviour
     public AnimatorStateInfo stateInfo;
     private bool isAnimEnd;
     private Rigidbody2D myRigidbody2D;
+    private PlayerMovement _playerMovement;
     
     
     // Start is called before the first frame update
     void Start()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         
@@ -34,7 +36,15 @@ public class PlayerAttack : MonoBehaviour
 
     void DoNotMove()
     {
-        
+        if (!isAnimEnd)
+        {
+            _playerMovement.enabled = false;
+            myRigidbody2D.velocity = new Vector2(0,myRigidbody2D.velocity.y);
+        }
+        else
+        {
+            _playerMovement.enabled = true;
+        }
     }
 
     void IsAniEnd()
