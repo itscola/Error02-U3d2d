@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5711170382694186545}
   - component: {fileID: 5711170382694186557}
   - component: {fileID: 5711170382694186554}
+  - component: {fileID: 1525672896344534583}
   - component: {fileID: 5711170382694186555}
   - component: {fileID: 1498082862}
   - component: {fileID: 1498082876}
@@ -102,7 +103,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 5711170382694186544}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a332022f6d1aa4a4f9ce35302881ce50, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -125,10 +126,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 8
-  m_Material: {fileID: 6200000, guid: a332022f6d1aa4a4f9ce35302881ce50, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &5711170382694186557
 Animator:
@@ -164,11 +165,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 9
-  jumpSpeed: 18
+  jumpSpeed: 24
   climbSpeed: 5
   stepAudioSource: {fileID: 1498082876}
   jumpAudioSource1: {fileID: 1498082877}
   fallAudioSource1: {fileID: 1498082878}
+--- !u!114 &1525672896344534583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5711170382694186544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c190297caf383543b40e3099d2b844b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atk: 0
+  acn: 0
+  ap: 0
+  animator: {fileID: 0}
 --- !u!114 &5711170382694186555
 MonoBehaviour:
   m_ObjectHideFlags: 0
